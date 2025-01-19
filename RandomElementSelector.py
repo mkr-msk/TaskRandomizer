@@ -1,3 +1,5 @@
+#Version 1.0
+
 import random
 
 def choose_random_element(elements):

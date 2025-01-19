@@ -1,42 +1,73 @@
+#Version 4
+
 import sqlite3
 
 def connect_to_db():
     conn = sqlite3.connect('tr_data.db')
+    # conn = sqlite3.connect('/storage/emulated/0/App/tr_data.db')
+
     return conn
 
-def get_all_items():
+def get_all_items(mode = 'randomized'):
     conn = connect_to_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Elements")
+
+    if mode == 'sorted':
+        cursor.execute(
+            "SELECT * \
+            FROM Elements \
+            ORDER BY \
+                Priority DESC, \
+                SUBSTR(Name, 1, 1) ASC, \
+                Active DESC"
+        )
+
+    else:
+        cursor.execute(
+            "SELECT * \
+            FROM Elements \
+            ORDER BY RANDOM()"
+        )
+
     return cursor.fetchall()
 
 def add_item(item):
     conn = connect_to_db()
     cursor = conn.cursor()
+
     cursor.execute(
-        "INSERT INTO Elements (Name, Priority, Active) VALUES (?, ?, ?)",
-        (
-            item.name,
-            item.priority,
-            item.active
-        )
+        f"INSERT INTO Elements (Name, Priority, Active) \
+        VALUES ({item.name}, {item.priority}, {item.active})"
     )
+
+    conn.commit()
+
+def update_item(target, name = '', new_value = ''):
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    if target == 'Name':
+        cursor.execute(
+            f"UPDATE Elements \
+            SET {target} = '{new_value}' \
+            WHERE name LIKE '%{name}%'"
+        )
+
+    elif target == 'Default':
+        cursor.execute(f"UPDATE Elements SET Active = 1")
+
+    else:
+        cursor.execute(
+            f"UPDATE Elements \
+            SET {target} = {new_value} \
+            WHERE name LIKE '%{name}%'"
+        )
+
     conn.commit()
 
 def delete_item(name):
     conn = connect_to_db()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM Elements WHERE name=?", (name,))
-    conn.commit()
 
-def update_item(name, new_value):
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    cursor.execute("UPDATE Elements SET value=? WHERE name=?", (new_value, name))
-    conn.commit()
+    cursor.execute(f"DELETE FROM Elements WHERE name LIKE '%{name}%'")
 
-def search_items(search_term):
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Elements WHERE name LIKE ?", ('%' + search_term + '%',))
-    return cursor.fetchall()
+    conn.commit()
