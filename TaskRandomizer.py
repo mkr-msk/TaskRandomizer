@@ -1,20 +1,28 @@
-#Version 2.0.1 Telegram Bot
+# Version 2.1.2 Telegram Bot
 
+# Импорт внутренних модулей
 from DBOperator import *
 from RandomElementSelector import *
 from Elements import *
 
+# Библиотеки для AIOgram
+import asyncio
 import logging
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters.command import Command
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
+# Логирование
+logging.basicConfig(level=logging.INFO)
 
+# Объект бота
+bot = Bot(token=get_token())
 
-async def next(upd: Update, context: ContextTypes.DEFAULT_TYPE):
+# Диспетчер
+dp = Dispatcher()
+
+# Обработка next
+@dp.message(Command('next'))
+async def cmd_next(message: types.Message):
     elements = []
 
     for row in get_all_items():
@@ -22,67 +30,51 @@ async def next(upd: Update, context: ContextTypes.DEFAULT_TYPE):
 
     msg = choose_random_element(elements)
 
-    await context.bot.send_message(
-        chat_id=upd.effective_chat.id,
-        text=msg
-    )
+    await message.answer(msg)
 
-
-async def show(upd: Update, context: ContextTypes.DEFAULT_TYPE):
+# Обработка show
+@dp.message(Command('show'))
+async def cmd_show(message: types.Message):
     msg = ""
     for row in get_all_items('sorted'):
         msg += f'{row[0]:40}{row[1]} / {row[2]}' + '\n'
 
-    await context.bot.send_message(
-        chat_id=upd.effective_chat.id,
-        text=msg
-    )
+    await message.answer(msg)
 
-
-async def add(upd: Update, context: ContextTypes.DEFAULT_TYPE):
+# Обработка add
+@dp.message(Command('add'))
+async def cmd_add(message: types.Message):
     e = Element()
 
-    e.name = f'"{context.args[0]}"'
-    e.priority = context.args[1]
-    e.active = context.args[2]
+    e.name = f'"{message.args[0]}"'
+    e.priority = message.args[1]
+    e.active = message.args[2]
 
     add_item(e)
 
-
-async def update(upd: Update, context: ContextTypes.DEFAULT_TYPE):
-    target = context.args[0]
+# Обработка update
+@dp.message(Command('update'))
+async def cmd_update(message: types.Message):
+    target = message.args[0]
 
     if target == 'Default':
         update_item(target)
 
     else:
-        name = context.args[1]
-        new_value = context.args[2]
+        name = message.args[1]
+        new_value = message.args[2]
         update_item(target, name, new_value)
 
-
-async def delete(upd: Update, context: ContextTypes.DEFAULT_TYPE):
-    name = context.args[0]
+# Обработка delete
+@dp.message(Command('delete'))
+async def cmd_delete(message: types.Message):
+    name = message.args[0]
 
     delete_item(name)
 
+# Запуск процесса поллинга новых апдейтов
+async def main():
+    await dp.start_polling(bot)
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('7773844836:AAHNvyJc1updfK-ND1xpGmEOHBPe73ShirM').build()
-
-    next_handler = CommandHandler('next', next)
-    application.add_handler(next_handler)
-
-    next_handler = CommandHandler('show', show)
-    application.add_handler(next_handler)
-
-    add_handler = CommandHandler('add', add)
-    application.add_handler(add_handler)
-
-    update_handler = CommandHandler('update', update)
-    application.add_handler(update_handler)
-
-    delete_handler = CommandHandler('delete', delete)
-    application.add_handler(delete_handler)
-
-    application.run_polling()
+    asyncio.run(main())

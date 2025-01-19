@@ -1,12 +1,21 @@
-#Version 4
+# Version 5
 
 import sqlite3
 
 def connect_to_db():
     conn = sqlite3.connect('tr_data.db')
-    # conn = sqlite3.connect('/storage/emulated/0/App/tr_data.db')
 
     return conn
+
+
+def get_token():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM Config")
+
+    return cursor.fetchall()[0][0]
+
 
 def get_all_items(mode = 'randomized'):
     conn = connect_to_db()
@@ -31,6 +40,7 @@ def get_all_items(mode = 'randomized'):
 
     return cursor.fetchall()
 
+
 def add_item(item):
     conn = connect_to_db()
     cursor = conn.cursor()
@@ -41,6 +51,7 @@ def add_item(item):
     )
 
     conn.commit()
+
 
 def update_item(target, name = '', new_value = ''):
     conn = connect_to_db()
@@ -63,6 +74,7 @@ def update_item(target, name = '', new_value = ''):
         )
 
     conn.commit()
+
 
 def delete_item(name):
     conn = connect_to_db()

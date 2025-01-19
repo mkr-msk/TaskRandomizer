@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show">
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;Added:&#10;    - command Add&#10;    - command Update&#10;    - command Delete">
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TaskRandomizer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TaskRandomizer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBOperator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBOperator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737298968513</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;Added:&#10;    - command Add&#10;    - command Update&#10;    - command Delete">
+      <option name="closed" value="true" />
+      <created>1737303675315</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737303675315</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +165,7 @@
     <MESSAGE value="it works!! First commit" />
     <MESSAGE value="V1 Console app" />
     <MESSAGE value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show" />
-    <option name="LAST_COMMIT_MESSAGE" value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show" />
+    <MESSAGE value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;Added:&#10;    - command Add&#10;    - command Update&#10;    - command Delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;Added:&#10;    - command Add&#10;    - command Update&#10;    - command Delete" />
   </component>
 </project>
