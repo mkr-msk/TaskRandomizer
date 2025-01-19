@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="V1 Console app">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737285725947</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show">
+      <option name="closed" value="true" />
+      <created>1737298968513</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737298968513</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +153,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="it works!! First commit" />
     <MESSAGE value="V1 Console app" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1 Console app" />
+    <MESSAGE value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show" />
+    <option name="LAST_COMMIT_MESSAGE" value="New version: Telegram bot&#10;&#10;Refactored TaskRandomizer.py&#10;&#10;There's:&#10;    - command Next&#10;    - command Show" />
   </component>
 </project>
