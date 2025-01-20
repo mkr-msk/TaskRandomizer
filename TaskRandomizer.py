@@ -1,4 +1,4 @@
-# Version 2.1.2 Telegram Bot
+# Version 2.1.3 Telegram Bot
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -9,13 +9,18 @@ from Elements import *
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters.command import Command
+from aiogram.filters.command import Command, CommandObject
+from aiogram.enums import ParseMode
+from aiogram.client.default import DefaultBotProperties
 
 # Логирование
 logging.basicConfig(level=logging.INFO)
 
 # Объект бота
-bot = Bot(token=get_token())
+bot = Bot(
+    token=get_token(),
+    default=DefaultBotProperties(parse_mode=ParseMode.HTML)
+)
 
 # Диспетчер
 dp = Dispatcher()
@@ -35,40 +40,44 @@ async def cmd_next(message: types.Message):
 # Обработка show
 @dp.message(Command('show'))
 async def cmd_show(message: types.Message):
-    msg = ""
+    msg = ''
+
     for row in get_all_items('sorted'):
-        msg += f'{row[0]:40}{row[1]} / {row[2]}' + '\n'
+        msg += f'<b>{row[0]:35}</b>{row[1]} / {row[2]}\n'
 
     await message.answer(msg)
 
 # Обработка add
 @dp.message(Command('add'))
-async def cmd_add(message: types.Message):
+async def cmd_add(message: types.Message, command: CommandObject):
     e = Element()
+    args = command.args.split()
 
-    e.name = f'"{message.args[0]}"'
-    e.priority = message.args[1]
-    e.active = message.args[2]
+    e.name = f'"{args[0]}"'
+    e.priority = args[1]
+    e.active = args[2]
 
     add_item(e)
 
 # Обработка update
 @dp.message(Command('update'))
-async def cmd_update(message: types.Message):
-    target = message.args[0]
+async def cmd_update(message: types.Message, command: CommandObject):
+    args = command.args.split()
+    target = args[0]
 
     if target == 'Default':
         update_item(target)
 
     else:
-        name = message.args[1]
-        new_value = message.args[2]
+        name = args[1]
+        new_value = args[2]
         update_item(target, name, new_value)
 
 # Обработка delete
 @dp.message(Command('delete'))
-async def cmd_delete(message: types.Message):
-    name = message.args[0]
+async def cmd_delete(message: types.Message, command: CommandObject):
+    args = command.args.split()
+    name = args[0]
 
     delete_item(name)
 
