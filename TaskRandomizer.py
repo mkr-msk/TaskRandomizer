@@ -1,4 +1,4 @@
-# Version 2.1.3 Telegram Bot
+# Version 2.2.1 Telegram Bot
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -24,6 +24,27 @@ bot = Bot(
 
 # Диспетчер
 dp = Dispatcher()
+
+# Обработка start
+@dp.message(Command('start'))
+async def cmd_start(message: types.Message):
+    kb = [
+        [types.KeyboardButton(text="/next")],
+        [
+            types.KeyboardButton(text="/show"),
+            types.KeyboardButton(text="/update"),
+        ],
+        [
+            types.KeyboardButton(text="/add"),
+            types.KeyboardButton(text="/delete"),
+        ],
+    ]
+    keyboard = types.ReplyKeyboardMarkup(
+        keyboard=kb,
+        resize_keyboard=True,
+        input_field_placeholder="Select a menu item"
+    )
+    await message.answer('Select action:', reply_markup=keyboard)
 
 # Обработка next
 @dp.message(Command('next'))
