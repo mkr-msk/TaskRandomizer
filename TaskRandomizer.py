@@ -1,4 +1,4 @@
-# Version 2.2.2 Telegram Bot
+# Version 2.2.3
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -30,13 +30,18 @@ dp = Dispatcher()
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text = "/next"))
-    builder.add(types.KeyboardButton(text = "/show"))
+    builder.add(types.KeyboardButton(text="/next"))
+    builder.add(types.KeyboardButton(text="/show"))
     builder.adjust(2)
+    builder.add(types.KeyboardButton(text='/update Default'))
+    builder.add(types.KeyboardButton(text='/update Active Chores 0'))
+    builder.add(types.KeyboardButton(text='/update Active Hygiene 0'))
+    builder.add(types.KeyboardButton(text='/update Active Workout 0'))
+    builder.adjust(1)
 
     await message.answer(
-        text = 'Select action:',
-        reply_markup = builder.as_markup(resize_keyboard=True),
+        text='Select action:',
+        reply_markup=builder.as_markup(resize_keyboard=True),
     )
 
 # Обработка next

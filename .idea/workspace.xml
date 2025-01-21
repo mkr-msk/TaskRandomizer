@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- added buttons">
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- переделана клавиатура с использованием Keyboard Builder&#10;-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBOperator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBOperator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737406771393</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="- переделана клавиатура с использованием Keyboard Builder&#10;-">
+      <option name="closed" value="true" />
+      <created>1737485243445</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737485243445</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +198,7 @@
     <MESSAGE value="- token moved to DB&#10;- refactored to aiogram3" />
     <MESSAGE value="- added html parser&#10;- fixed args" />
     <MESSAGE value="- added buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added buttons" />
+    <MESSAGE value="- переделана клавиатура с использованием Keyboard Builder&#10;-" />
+    <option name="LAST_COMMIT_MESSAGE" value="- переделана клавиатура с использованием Keyboard Builder&#10;-" />
   </component>
 </project>
