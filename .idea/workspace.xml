@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- добавлены дополнительные команды обновления активности">
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- исправлено отображение клавиатуры">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
@@ -184,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737487904115</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- исправлено отображение клавиатуры">
+      <option name="closed" value="true" />
+      <created>1737488255807</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737488255807</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +216,7 @@
     <MESSAGE value="- added buttons" />
     <MESSAGE value="- переделана клавиатура с использованием Keyboard Builder&#10;-" />
     <MESSAGE value="- добавлены дополнительные команды обновления активности" />
-    <option name="LAST_COMMIT_MESSAGE" value="- добавлены дополнительные команды обновления активности" />
+    <MESSAGE value="- исправлено отображение клавиатуры" />
+    <option name="LAST_COMMIT_MESSAGE" value="- исправлено отображение клавиатуры" />
   </component>
 </project>
