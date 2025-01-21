@@ -30,14 +30,14 @@ dp = Dispatcher()
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text="/next"))
-    builder.add(types.KeyboardButton(text="/show"))
-    builder.adjust(2)
-    builder.add(types.KeyboardButton(text='/update Default'))
-    builder.add(types.KeyboardButton(text='/update Active Chores 0'))
-    builder.add(types.KeyboardButton(text='/update Active Hygiene 0'))
-    builder.add(types.KeyboardButton(text='/update Active Workout 0'))
-    builder.adjust(1)
+    builder.row(
+        types.KeyboardButton(text="/next"),
+        types.KeyboardButton(text="/show"),
+    )
+    builder.row(types.KeyboardButton(text='/update Default'))
+    builder.row(types.KeyboardButton(text='/update Active Chores 0'))
+    builder.row(types.KeyboardButton(text='/update Active Hygiene 0'))
+    builder.row(types.KeyboardButton(text='/update Active Workout 0'))
 
     await message.answer(
         text='Select action:',
