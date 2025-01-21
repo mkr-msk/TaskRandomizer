@@ -1,4 +1,4 @@
-# Version 2.2.3
+# Version 2.3.0
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -112,8 +112,9 @@ async def cmd_delete(command: CommandObject):
 
 # Обработка update_menu / update_default
 @dp.callback_query(F.data == "update_default")
-async def update_default():
-    update_item('Default')
+async def update_default(callback: types.CallbackQuery):
+    update_item(target='Default')
+    await callback.message.answer(text='Ok')
 
 # Обработка update_menu / update_active
 @dp.callback_query(F.data == "update_active")
@@ -139,18 +140,24 @@ async def update_active(callback: types.CallbackQuery):
 
 # Обработка update_menu / update_active / update_active_chores
 @dp.callback_query(F.data == "update_active_chores")
-async def update_active_chores():
+async def update_active_chores(callback: types.CallbackQuery):
     update_item('Active', 'Chores', '0')
+
+    await callback.message.answer(text='Ok')
 
 # Обработка update_menu / update_active / update_active_hygiene
 @dp.callback_query(F.data == "update_active_hygiene")
-async def update_active_hygiene():
+async def update_active_hygiene(callback: types.CallbackQuery):
     update_item('Active', 'Hygiene', '0')
+
+    await callback.message.answer(text='Ok')
 
 # Обработка update_menu / update_active / update_active_workout
 @dp.callback_query(F.data == "update_active_workout")
-async def update_active_workout():
+async def update_active_workout(callback: types.CallbackQuery):
     update_item('Active', 'Workout', '0')
+
+    await callback.message.answer(text='Ok')
 
 
 # Запуск процесса поллинга новых апдейтов
