@@ -1,4 +1,4 @@
-# Version 2.2.1 Telegram Bot
+# Version 2.2.2 Telegram Bot
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -12,6 +12,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command, CommandObject
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 # Логирование
 logging.basicConfig(level=logging.INFO)
@@ -28,23 +29,15 @@ dp = Dispatcher()
 # Обработка start
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
-    kb = [
-        [types.KeyboardButton(text="/next")],
-        [
-            types.KeyboardButton(text="/show"),
-            types.KeyboardButton(text="/update"),
-        ],
-        [
-            types.KeyboardButton(text="/add"),
-            types.KeyboardButton(text="/delete"),
-        ],
-    ]
-    keyboard = types.ReplyKeyboardMarkup(
-        keyboard=kb,
-        resize_keyboard=True,
-        input_field_placeholder="Select a menu item"
+    builder = ReplyKeyboardBuilder()
+    builder.add(types.KeyboardButton(text = "/next"))
+    builder.add(types.KeyboardButton(text = "/show"))
+    builder.adjust(2)
+
+    await message.answer(
+        text = 'Select action:',
+        reply_markup = builder.as_markup(resize_keyboard=True),
     )
-    await message.answer('Select action:', reply_markup=keyboard)
 
 # Обработка next
 @dp.message(Command('next'))
