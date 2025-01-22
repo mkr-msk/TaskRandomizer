@@ -1,4 +1,4 @@
-# Version 2.3.0
+# Version 2.3.1
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -110,7 +110,7 @@ async def cmd_delete(command: CommandObject):
 
     delete_item(name)
 
-# Обработка выбора в update_menu
+# Обработка update_menu callbacks
 @dp.callback_query(F.data.startswith("update_"))
 async def callback_update(callback: types.CallbackQuery):
     action = callback.data.split("_")[1]
@@ -125,15 +125,15 @@ async def callback_update(callback: types.CallbackQuery):
             builder = InlineKeyboardBuilder()
             builder.add(types.InlineKeyboardButton(
                 text="Chores",
-                callback_data="deactivate_chores")
+                callback_data="update_chores")
             )
             builder.add(types.InlineKeyboardButton(
                 text="Hygiene",
-                callback_data="deactivate_hygiene")
+                callback_data="update_hygiene")
             )
             builder.add(types.InlineKeyboardButton(
                 text="Workout",
-                callback_data="deactivate_workout")
+                callback_data="update_workout")
             )
 
             await callback.message.answer(
@@ -141,12 +141,6 @@ async def callback_update(callback: types.CallbackQuery):
                 reply_markup=builder.as_markup(resize_keyboard=True),
             )
 
-# Обработка выбора в update_menu / deactivate_menu
-@dp.callback_query(F.data == F.data.startswith("deactivate_"))
-async def callback_deactivate(callback: types.CallbackQuery):
-    action = callback.data.split("_")[1]
-
-    match action:
         case 'chores':
             update_item('Active', 'Chores', '0')
 
@@ -161,7 +155,6 @@ async def callback_deactivate(callback: types.CallbackQuery):
             update_item('Active', 'Workout', '0')
 
             await callback.message.answer(text='Ok')
-
 
 # Запуск процесса поллинга новых апдейтов
 async def main():

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- исправлены ошибки работы inline-меню">
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- рефакторизовано update_menu, deactivate_menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
@@ -208,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737492209006</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- рефакторизовано update_menu, deactivate_menu">
+      <option name="closed" value="true" />
+      <created>1737517665251</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737517665251</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,6 +243,7 @@
     <MESSAGE value="- исправлено отображение клавиатуры" />
     <MESSAGE value="- добавлено inline-меню Update" />
     <MESSAGE value="- исправлены ошибки работы inline-меню" />
-    <option name="LAST_COMMIT_MESSAGE" value="- исправлены ошибки работы inline-меню" />
+    <MESSAGE value="- рефакторизовано update_menu, deactivate_menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="- рефакторизовано update_menu, deactivate_menu" />
   </component>
 </project>
