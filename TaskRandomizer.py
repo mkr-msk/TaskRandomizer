@@ -84,7 +84,7 @@ async def cmd_update(command: CommandObject):
     new_value = args[2]
     update_item(target, name, new_value)
 
-# Обработка update_menu
+# Обработка команды update_menu
 @dp.message(Command('update_menu'))
 async def cmd_update_menu(message: types.Message):
     builder = InlineKeyboardBuilder()
@@ -110,54 +110,57 @@ async def cmd_delete(command: CommandObject):
 
     delete_item(name)
 
-# Обработка update_menu / update_default
-@dp.callback_query(F.data == "update_default")
-async def update_default(callback: types.CallbackQuery):
-    update_item(target='Default')
-    await callback.message.answer(text='Ok')
+# Обработка выбора в update_menu
+@dp.callback_query(F.data.startswith("update_"))
+async def callback_update(callback: types.CallbackQuery):
+    action = callback.data.split("_")[1]
 
-# Обработка update_menu / update_active
-@dp.callback_query(F.data == "update_active")
-async def update_active(callback: types.CallbackQuery):
-    builder = InlineKeyboardBuilder()
-    builder.add(types.InlineKeyboardButton(
-        text="Chores",
-        callback_data="update_active_chores")
-    )
-    builder.add(types.InlineKeyboardButton(
-        text="Hygiene",
-        callback_data="update_active_hygiene")
-    )
-    builder.add(types.InlineKeyboardButton(
-        text="Workout",
-        callback_data="update_active_workout")
-    )
+    match action:
+        case 'default':
+            update_item(target='Default')
 
-    await callback.message.answer(
-        text='Select item to deactivate:',
-        reply_markup=builder.as_markup(resize_keyboard=True),
-    )
+            await callback.message.answer(text='Ok')
 
-# Обработка update_menu / update_active / update_active_chores
-@dp.callback_query(F.data == "update_active_chores")
-async def update_active_chores(callback: types.CallbackQuery):
-    update_item('Active', 'Chores', '0')
+        case 'active':
+            builder = InlineKeyboardBuilder()
+            builder.add(types.InlineKeyboardButton(
+                text="Chores",
+                callback_data="deactivate_chores")
+            )
+            builder.add(types.InlineKeyboardButton(
+                text="Hygiene",
+                callback_data="deactivate_hygiene")
+            )
+            builder.add(types.InlineKeyboardButton(
+                text="Workout",
+                callback_data="deactivate_workout")
+            )
 
-    await callback.message.answer(text='Ok')
+            await callback.message.answer(
+                text='Select item to deactivate:',
+                reply_markup=builder.as_markup(resize_keyboard=True),
+            )
 
-# Обработка update_menu / update_active / update_active_hygiene
-@dp.callback_query(F.data == "update_active_hygiene")
-async def update_active_hygiene(callback: types.CallbackQuery):
-    update_item('Active', 'Hygiene', '0')
+# Обработка выбора в update_menu / deactivate_menu
+@dp.callback_query(F.data == F.data.startswith("deactivate_"))
+async def callback_deactivate(callback: types.CallbackQuery):
+    action = callback.data.split("_")[1]
 
-    await callback.message.answer(text='Ok')
+    match action:
+        case 'chores':
+            update_item('Active', 'Chores', '0')
 
-# Обработка update_menu / update_active / update_active_workout
-@dp.callback_query(F.data == "update_active_workout")
-async def update_active_workout(callback: types.CallbackQuery):
-    update_item('Active', 'Workout', '0')
+            await callback.message.answer(text='Ok')
 
-    await callback.message.answer(text='Ok')
+        case 'hygiene':
+            update_item('Active', 'Hygiene', '0')
+
+            await callback.message.answer(text='Ok')
+
+        case 'workout':
+            update_item('Active', 'Workout', '0')
+
+            await callback.message.answer(text='Ok')
 
 
 # Запуск процесса поллинга новых апдейтов
