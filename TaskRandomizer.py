@@ -1,4 +1,4 @@
-# Version 2.3.1
+# Version 2.4.1
 
 # Импорт внутренних модулей
 from DBOperator import *
@@ -9,7 +9,7 @@ from Elements import *
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types, F
-from aiogram.filters.command import Command, CommandObject
+from aiogram.filters.command import Command
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
@@ -56,33 +56,18 @@ async def cmd_next(message: types.Message):
 # Обработка show
 @dp.message(Command('show'))
 async def cmd_show(message: types.Message):
-    msg = ''
+    builder = InlineKeyboardBuilder()
 
     for row in get_all_items('sorted'):
-        msg += f'<b>{row[0]:35}</b>{row[1]} / {row[2]}\n'
+        builder.row(types.InlineKeyboardButton(
+            text=f'{row[0]:25}{row[1]} / {row[2]}',
+            callback_data=f'show_{row[0]}')
+        )
 
-    await message.answer(msg)
-
-# Обработка add
-@dp.message(Command('add'))
-async def cmd_add(command: CommandObject):
-    e = Element()
-    args = command.args.split()
-
-    e.name = f'"{args[0]}"'
-    e.priority = args[1]
-    e.active = args[2]
-
-    add_item(e)
-
-# Обработка update
-@dp.message(Command('update'))
-async def cmd_update(command: CommandObject):
-    args = command.args.split()
-    target = args[0]
-    name = args[1]
-    new_value = args[2]
-    update_item(target, name, new_value)
+    await message.answer(
+        text="All activities",
+        reply_markup=builder.as_markup()
+    )
 
 # Обработка команды update_menu
 @dp.message(Command('update_menu'))
@@ -102,18 +87,11 @@ async def cmd_update_menu(message: types.Message):
         reply_markup=builder.as_markup()
     )
 
-# Обработка delete
-@dp.message(Command('delete'))
-async def cmd_delete(command: CommandObject):
-    args = command.args.split()
-    name = args[0]
-
-    delete_item(name)
-
 # Обработка update_menu callbacks
 @dp.callback_query(F.data.startswith("update_"))
 async def callback_update(callback: types.CallbackQuery):
     action = callback.data.split("_")[1]
+    all_items = get_all_items(mode='sorted')
 
     match action:
         case 'default':
@@ -123,36 +101,20 @@ async def callback_update(callback: types.CallbackQuery):
 
         case 'active':
             builder = InlineKeyboardBuilder()
-            builder.add(types.InlineKeyboardButton(
-                text="Chores",
-                callback_data="update_chores")
-            )
-            builder.add(types.InlineKeyboardButton(
-                text="Hygiene",
-                callback_data="update_hygiene")
-            )
-            builder.add(types.InlineKeyboardButton(
-                text="Workout",
-                callback_data="update_workout")
-            )
+            for row in all_items:
+                builder.row(types.InlineKeyboardButton(
+                    text=row[0],
+                    callback_data=f'update_{row[0]}')
+                )
 
             await callback.message.answer(
                 text='Select item to deactivate:',
                 reply_markup=builder.as_markup(resize_keyboard=True),
             )
 
-        case 'chores':
-            update_item('Active', 'Chores', '0')
-
-            await callback.message.answer(text='Ok')
-
-        case 'hygiene':
-            update_item('Active', 'Hygiene', '0')
-
-            await callback.message.answer(text='Ok')
-
-        case 'workout':
-            update_item('Active', 'Workout', '0')
+    for row in all_items:
+        if row[0] == action:
+            update_item('Active', row[0], '0')
 
             await callback.message.answer(text='Ok')
 
