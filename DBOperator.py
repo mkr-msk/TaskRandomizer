@@ -1,6 +1,8 @@
-# Version 5
-
 import sqlite3
+import random
+
+from Classes import Element
+
 
 def connect_to_db():
     conn = sqlite3.connect('tr_data.db')
@@ -41,13 +43,13 @@ def get_all_items(mode = 'randomized'):
     return cursor.fetchall()
 
 
-def add_item(item):
+def add_item(name: str, priority: str, active: str):
     conn = connect_to_db()
     cursor = conn.cursor()
 
     cursor.execute(
         f"INSERT INTO Elements (Name, Priority, Active) \
-        VALUES ({item.name}, {item.priority}, {item.active})"
+        VALUES ({name}, {priority}, {active})"
     )
 
     conn.commit()
@@ -83,3 +85,14 @@ def delete_item(name):
     cursor.execute(f"DELETE FROM Elements WHERE name LIKE '%{name}%'")
 
     conn.commit()
+
+
+def choose_random_element():
+    elements = [Element(row[0], row[1], row[2]) for row in get_all_items() if row[2]]
+
+    priority_list = []
+    for e in elements:
+        for _ in range(e.priority):
+            priority_list.append(e.name)
+
+    return random.choice(priority_list)

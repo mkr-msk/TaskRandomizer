@@ -1,4 +1,4 @@
-# Version 2.4.3
+# Version 2.5.0
 
 import asyncio
 import logging
@@ -11,7 +11,11 @@ async def main():
     bot = Bot(token=get_token())
     dp = Dispatcher()
 
-    dp.include_routers(Handlers.router, Callbacks.router)
+    dp.include_routers(
+        Handlers.Main.router,
+        Callbacks.Main.router,
+        Handlers.Add_activity.router,
+    )
 
     logging.basicConfig(level=logging.INFO)
 

@@ -1,10 +1,8 @@
 from aiogram import Router, types
 from aiogram.filters import Command
 
-from DBOperator import *
-from Elements import Element
-from Keyboards import *
-from RandomElementSelector import choose_random_element
+from DBOperator import choose_random_element, update_item
+from Keyboards import get_start_kb, get_show_kb
 
 router = Router()
 
@@ -17,13 +15,7 @@ async def cmd_start(message: types.Message):
 
 @router.message(Command('next'))
 async def cmd_next(message: types.Message):
-    elements = []
-
-    for row in get_all_items():
-        elements.append(Element(row[0], row[1], row[2]))
-
-    msg = choose_random_element(elements)
-
+    msg = choose_random_element()
     await message.answer(msg)
 
 @router.message(Command('show'))
@@ -32,10 +24,6 @@ async def cmd_show(message: types.Message):
         text="All activities",
         reply_markup=get_show_kb(),
     )
-
-@router.message(Command('add_activity'))
-async def cmd_add_activity(message: types.Message):
-    pass # диалог с пользователем
 
 @router.message(Command('reset_all'))
 async def cmd_reset_all(message: types.Message):
