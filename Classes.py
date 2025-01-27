@@ -1,19 +1,19 @@
-from aiogram.fsm.state import State
+from aiogram.fsm.state import State, StatesGroup
 
 
-class Element:
+class Element(StatesGroup):
     def __init__(self, name: str, priority: int, active: int):
         self.name = name
         self.priority = priority
         self.active = active
 
-class AddElementState:
+class AddElementState(StatesGroup):
     name = State()
     priority = State()
     active = State()
 
-class UpdateNameState:
+class UpdateNameState(StatesGroup):
     name = State()
 
-class UpdatePriorityState:
+class UpdatePriorityState(StatesGroup):
     priority = State()

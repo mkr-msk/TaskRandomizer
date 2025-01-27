@@ -48,8 +48,8 @@ def add_item(name: str, priority: str, active: str):
     cursor = conn.cursor()
 
     cursor.execute(
-        f"INSERT INTO Elements (Name, Priority, Active) \
-        VALUES ({name}, {priority}, {active})"
+        f'INSERT INTO Elements (Name, Priority, Active) \
+        VALUES ("{name}", {priority}, {active})'
     )
 
     conn.commit()
@@ -60,9 +60,9 @@ def update_item(target, name = '', new_value = ''):
     cursor = conn.cursor()
     if target == 'Name':
         cursor.execute(
-            f"UPDATE Elements \
-            SET {target} = '{new_value}' \
-            WHERE name LIKE '%{name}%'"
+            f'UPDATE Elements \
+            SET {target} = "{new_value}" \
+            WHERE name LIKE "%{name}%"'
         )
 
     elif target == 'Default':

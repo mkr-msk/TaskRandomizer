@@ -1,20 +1,21 @@
-# Version 2.5.0
+# Version 2.5.1
 
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
 
 from DBOperator import get_token
-import Handlers, Callbacks
+from Handlers import MainHandlers, Add_activity
+from Callbacks import MainCallbacks
 
 async def main():
     bot = Bot(token=get_token())
     dp = Dispatcher()
 
     dp.include_routers(
-        Handlers.Main.router,
-        Callbacks.Main.router,
-        Handlers.Add_activity.router,
+        MainHandlers.router,
+        Add_activity.router,
+        MainCallbacks.router
     )
 
     logging.basicConfig(level=logging.INFO)

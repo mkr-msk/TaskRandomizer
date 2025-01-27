@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="-">
-      <change afterPath="$PROJECT_DIR$/Classes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Handlers/Add_activity.py" afterDir="false" />
+    <list default="true" id="27deb0fa-b27a-4311-a591-380aab63a68e" name="Changes" comment="- добавлены диалоги">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Callbacks/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Callbacks/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Callbacks/MainCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBOperator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBOperator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Elements.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RandomElementSelector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/MainHandlers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskRandomizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TaskRandomizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737889964670</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- добавлены диалоги">
+      <option name="closed" value="true" />
+      <created>1738005458090</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1738005458090</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,6 +290,7 @@
     <MESSAGE value="- рефакторизовал update_menu" />
     <MESSAGE value="- show теперь через inline&#10;- Deactivate выводит все элементы" />
     <MESSAGE value="- переход на show меню&#10;- добавление кнопки add_activity&#10;- клавиатуры перенесены в Keyboards.py&#10;- Handlers.py, Callbacks.py для обработок" />
-    <option name="LAST_COMMIT_MESSAGE" value="- переход на show меню&#10;- добавление кнопки add_activity&#10;- клавиатуры перенесены в Keyboards.py&#10;- Handlers.py, Callbacks.py для обработок" />
+    <MESSAGE value="- добавлены диалоги" />
+    <option name="LAST_COMMIT_MESSAGE" value="- добавлены диалоги" />
   </component>
 </project>
